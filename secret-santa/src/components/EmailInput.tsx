@@ -51,14 +51,20 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
 
   return (
     <div className="w-full">
-      {/* Email tags */}
-      <div className="mb-2 flex flex-wrap gap-2">
+      {/* Email tags styling updated */}
+      <div className="mb-3 flex flex-wrap gap-2">
         {emails.map(email => (
-          <span key={email} className="bg-blue-500 text-white px-3 py-1 rounded-full flex items-center text-sm">
+          <span 
+            key={email} 
+            // Tag styling: bg-festive-red, rounded-md
+            className="bg-festive-red text-white px-3 py-1.5 rounded-md flex items-center text-sm shadow-sm"
+          >
+            {/* Email text uses font-sans by default from global styles */}
             {email}
             <button
               type="button"
-              className="ml-2 text-blue-100 hover:text-white focus:outline-none"
+              // "x" button styling updated
+              className="ml-2 text-red-100 hover:text-white focus:outline-none"
               onClick={() => removeEmail(email)}
             >
               &times;
@@ -67,18 +73,23 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
         ))}
       </div>
 
-      {/* Input field */}
+      {/* Input field styling updated */}
       <input
-        type="email"
+        type="email" // Changed from type="text" to type="email" for semantic correctness
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        placeholder="Type an email and press Enter, Comma, or Space"
-        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-          error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-        }`}
+        placeholder="Type an email and press Enter..." // Placeholder text shortened
+        className={`w-full px-4 py-2.5 border rounded-md focus:outline-none focus:ring-2 text-sm
+                    font-sans {/* Explicitly apply font-sans for input text */}
+                    ${ error 
+                        ? 'border-festive-red focus:ring-festive-red/70' 
+                        : 'border-gray-300 focus:ring-festive-red/70' // Keep gray border for normal state, festive focus
+                    }
+                    placeholder-gray-400 text-festive-darkText bg-white`} // Ensure input text color is dark
       />
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {/* Error message styling updated */}
+      {error && <p className="text-festive-red text-xs mt-1.5 font-sans">{error}</p>} {/* Applied font-sans to error text */}
     </div>
   );
 };

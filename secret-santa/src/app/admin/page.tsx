@@ -43,13 +43,17 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
+    // The min-h-screen and flex setup for centering should already have bg-festive-lightBg from globals.css
+    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      {/* Card styling: added shadow-xl, border, border-festive-red/30 */}
+      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-xl border border-festive-red/30">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Secret Santa Admin Panel
+          {/* Title: uses font-handwriting, new text color and size */}
+          <h2 className="mt-6 text-center text-5xl font-handwriting text-festive-red">
+            Secret Santa Admin
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          {/* Subtitle: uses default font-sans, adjusted text color */}
+          <p className="mt-4 text-center text-sm text-festive-darkText/80">
             Enter the email addresses of the participants below.
           </p>
         </div>
@@ -57,21 +61,30 @@ export default function AdminPage() {
           <EmailInput emails={emails} setEmails={setEmails} />
 
           {feedbackMessage && (
-            <div className={`p-3 rounded-md ${
-              feedbackMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+            // Feedback message styling updated
+            <div className={`p-3 rounded-md text-sm ${
+              feedbackMessage.type === 'success' 
+                ? 'bg-festive-green/20 text-festive-green' 
+                : 'bg-festive-red/20 text-festive-red'
             }`}>
-              <p className="text-sm">{feedbackMessage.message}</p>
+              <p>{feedbackMessage.message}</p>
             </div>
           )}
 
           <div>
+            {/* Button styling updated: font, bg color, hover state, text color */}
             <button
               type="button"
               onClick={handleSubmit}
               disabled={isLoading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent
+                         text-lg font-handwriting text-white 
+                         bg-festive-red hover:bg-opacity-80
+                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-festive-red/70
+                         rounded-md disabled:opacity-50 transition-colors"
             >
-              {isLoading ? 'Submitting...' : 'Submit Emails'}
+              {isLoading ? 'Submitting...' : 'Share the Joy!'} 
+              {/* Changed button text for more festive feel */}
             </button>
           </div>
         </div>
